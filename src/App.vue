@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
-let port = ref(Number(import.meta.env.VITE_PORT));
+let port = ref(import.meta.env.VITE_PORT);
+import.meta.env.VITE_PORT
 setInterval(() => {
   port.value++
-  console.log(port.value);
+  console.log(port);
 }, 1000)
 </script>
 
