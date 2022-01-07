@@ -13,7 +13,7 @@ import { resolve } from 'path';
 
 // import { generateModifyVars } from './build/config/themeConfig';
 // import { createProxy } from './build/vite/proxy';
-// import { wrapperEnv } from './build/utils';
+import { wrapperEnv } from './build/utils';
 // import { createVitePlugins } from './build/vite/plugin';
 // import { OUTPUT_DIR } from './build/constant';
 
@@ -28,7 +28,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   const env = loadEnv(mode, root);
 
   // The boolean type read by loadEnv is a string. This function can be converted to boolean type
-  // const viteEnv = wrapperEnv(env);
+  const viteEnv = wrapperEnv(env);
+  viteEnv.VITE_PORT;
 
   // const { VITE_PORT, VITE_PUBLIC_PATH, VITE_PROXY, VITE_DROP_CONSOLE, VITE_LEGACY } = viteEnv;
 
