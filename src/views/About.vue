@@ -1,5 +1,6 @@
 <template>
   <div @click="handleClick"> This is About Page </div>
+  <el-button>Default</el-button>
 </template>
 <script setup>
   import { useRoute, useRouter } from 'vue-router';
