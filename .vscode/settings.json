@@ -36,5 +36,8 @@
   "i18n-ally.displayLanguage": "en",
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "cSpell.words": [
+    "VITE"
+  ]
 }

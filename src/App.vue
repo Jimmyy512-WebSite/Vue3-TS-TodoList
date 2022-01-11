@@ -10,6 +10,7 @@
 <template>
   <div class="title">vite por222t:</div>
   <div class="content">{{ port }}</div>
+  <router-view></router-view>
 </template>
 
 <style lang="less">
