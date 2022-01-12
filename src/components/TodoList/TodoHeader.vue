@@ -8,7 +8,7 @@
         <el-input class="elInput" v-model="addInput" placeholder="Please input"> </el-input>
       </el-col>
       <el-col :span="2">
-        <el-button type="primary">新增</el-button>
+        <el-button type="primary" @click="emit('addTodo')">新增</el-button>
       </el-col>
     </el-row>
   </div>
@@ -23,7 +23,7 @@
   const props = defineProps({
     modelValue: String,
   });
-  const emit = defineEmits(['update:modelValue']);
+  const emit = defineEmits(['update:modelValue', 'addTodo']);
   const addInput = ref(props.modelValue);
   watchEffect(() => {
     emit('update:modelValue', addInput.value);
