@@ -10,13 +10,20 @@
 <script setup lang="ts">
   import TodoHeader from '../components/TodoList/TodoHeader.vue';
   import TodoContent from '../components/TodoList/TodoContent.vue';
-  import { ref, inject } from 'vue';
-  const $axios = inject('$axios') as Axios;
+  import { ref } from 'vue';
+  import { useBaseStore } from '../store/modules/base';
+
+  // 直接呼叫axios的方法
+  // const $axios = inject('$axios') as Axios;
+  // $axios.get('http://localhost:3087/todolist').then((res) => {
+  //   console.log('res:', res.data);
+  // });
+  const baseStore = useBaseStore();
   let newTodoInput = ref('');
-  const callAddTodoAPI = () => {
-    $axios.get('http://localhost:3087/todolist').then((res) => {
-      console.log('res:', res.data);
-    });
+  const callAddTodoAPI = async () => {
+    console.log('callAddTodoAPI');
+    let res = await baseStore.getTodoList3();
+    console.log('res:', res);
   };
 
   // const callGetTodoAPI = () => {

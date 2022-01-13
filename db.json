@@ -2,8 +2,8 @@
   "todolist": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "title": "這是代辦事項1",
+      "status": 0
     },
     {
       "id": 2

@@ -6,6 +6,11 @@ export const useDemoStore = defineStore('demoStore', {
   state: (): DemoStore => ({
     testNum: 0,
   }),
+  getters: {
+    formatTestNum(): string {
+      return `金額:${this.testNum + 1000}`;
+    },
+  },
   actions: {
     addNum() {
       ++(this.testNum as number);
@@ -15,11 +20,6 @@ export const useDemoStore = defineStore('demoStore', {
     },
     setNum(num: number) {
       this.testNum = num;
-    },
-  },
-  getters: {
-    formatTestNum(): string {
-      return `金額:${this.testNum + 1000}`;
     },
   },
 });

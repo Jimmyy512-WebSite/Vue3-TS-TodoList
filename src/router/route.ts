@@ -4,7 +4,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/',
     // component: () => import('/@/views/TodoList.vue'),
-    redirect: '/pinia_test',
+    redirect: '/home',
   },
   {
     path: '/home',
@@ -15,8 +15,8 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('/@/views/About.vue'),
   },
   {
-    path: '/test',
-    component: () => import('/@/views/Test.vue'),
+    path: '/todolist',
+    component: () => import('/@/views/TodoList.vue'),
   },
   {
     path: '/pinia_test',
