@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 const instance = axios.create({
   // Api base url
   baseURL: process.env.NODE_ENV === 'development' ? '/data' : process.env.VUE_APP_DEMO_API_ROOT,

@@ -7,9 +7,9 @@
 //   export default component
 // }
 
-// interface ImportMetaEnv{
-//   readonly VITE_PORT: number;
-// }
+interface ImportMetaEnv {
+  readonly VITE_PORT: number;
+}
 
 // interface ImportMeta{
 //   readonly env: ImportMetaEnv;

@@ -44,7 +44,6 @@
       "./node_modules/@types/",
       "./types"
     ],
-    "incremental": true,
     // ↓在表达式和声明上有隐含的 any类型时报错。
     "noImplicitAny": false,
     // ↓忽略所有的声明文件（ *.d.ts）的类型检查。
