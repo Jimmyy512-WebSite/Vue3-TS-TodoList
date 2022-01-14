@@ -5,16 +5,12 @@
         <div class="grid-content titleBlock"> 代辦事項 </div>
       </el-col>
       <el-col :span="18">
-        <el-input class="elInput" v-model="addInput" placeholder="Please input"> </el-input>
+        <el-input class="elInput" v-model="addInput" placeholder="請輸入要新建的內容"> </el-input>
       </el-col>
       <el-col :span="2">
         <el-button type="primary" @click="emit('addTodo')">新增</el-button>
       </el-col>
     </el-row>
-  </div>
-  <div>
-    props data:
-    {{ props.modelValue }}
   </div>
 </template>
 
@@ -27,6 +23,10 @@
   const addInput = ref(props.modelValue);
   watchEffect(() => {
     emit('update:modelValue', addInput.value);
+  });
+  //* 解決當外層v-model變數透過程式改值時,input的值不會更新的問題
+  watchEffect(() => {
+    addInput.value = props.modelValue;
   });
 </script>
 

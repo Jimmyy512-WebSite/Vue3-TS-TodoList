@@ -1,5 +1,10 @@
 import { defineStore } from 'pinia';
-import { getTodoList } from '/@/api/sys/todoList';
+import {
+  AddTodoParamModel,
+  DeleteTodoParamModel,
+  PatchTodoParamModel,
+} from '/@/api/sys/model/todoListModel';
+import { getTodoList, addTodo, deleteTodo, patchTodo } from '/@/api/sys/todoList';
 
 interface baseState {
   token: undefined;
@@ -15,12 +20,17 @@ export const useBaseStore = defineStore({
     };
   },
   actions: {
-    //直接在這邊呼叫axios的寫法
-    // getTodoList(): Promise<GetTodoListModel> {
-    //   return axios.get<GetTodoListModel, any>('http://localhost:3087/todolist');
-    // },
-    async getTodoList3() {
+    async getTodoList() {
       return await getTodoList();
+    },
+    async addTodo(param: AddTodoParamModel) {
+      return await addTodo(param);
+    },
+    async deleteTodo(param: DeleteTodoParamModel) {
+      return await deleteTodo(param);
+    },
+    async patchTodo(param: PatchTodoParamModel) {
+      return await patchTodo(param);
     },
   },
 });

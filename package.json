@@ -7,7 +7,7 @@
     "preview": "vite preview",
     "lint:eslint": "eslint \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
     "lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
-    "json-server": "json-server --watch db.json --port 3087"
+    "json-server": "json-server db.json --port 3087"
   },
   "dependencies": {
     "@types/node": "^17.0.8",

@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { routes } from './route';
-// import { LAYOUT } from '/@/Constant';
 
 const router = createRouter({
   history: createWebHashHistory(),

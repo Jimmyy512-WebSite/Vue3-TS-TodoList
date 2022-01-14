@@ -1,17 +1,131 @@
 <template>
-  <el-tabs v-model="activeName" @tab-click="handleClick">
-    <el-tab-pane label="全部" name="all">User</el-tab-pane>
-    <el-tab-pane label="進行中" name="process">Config</el-tab-pane>
-    <el-tab-pane label="已完成" name="done">Role</el-tab-pane>
+  <el-tabs v-model="activeName">
+    <el-tab-pane label="全部" name="all"></el-tab-pane>
+    <el-tab-pane label="進行中" name="process"></el-tab-pane>
+    <el-tab-pane label="已完成" name="done"></el-tab-pane>
   </el-tabs>
+
+  <el-row :gutter="10" align="middle" v-for="(it, index) in filterTodoList" :key="index">
+    <el-col :span="1">
+      <el-checkbox v-model="it.bindData" label="" size="large"></el-checkbox>
+    </el-col>
+    <el-col :span="18" class="title" @click="handleEditClick(index)">
+      <template v-if="selectEditIndex === index">
+        <el-input
+          id="test"
+          v-model="newTitleInput"
+          placeholder="請輸入修改值"
+          @blur="handleEditInputBlur"
+        />
+      </template>
+
+      <template v-else>
+        {{ it.title }}
+      </template>
+    </el-col>
+    <el-col :span="2"> {{ it.status === 0 ? '進行中' : '已完成' }}</el-col>
+    <el-col :span="1.5">
+      <el-button v-if="it.bindData" type="danger" :icon="Delete" circle @click="handleDeleteClick">
+      </el-button
+    ></el-col>
+    <el-col :span="1.5">
+      <el-button
+        v-if="it.bindData && it.status !== 1"
+        type="success"
+        :icon="Check"
+        circle
+        @click="handleCheckClick"
+      >
+      </el-button
+    ></el-col>
+  </el-row>
+
+  <el-row align="middle">
+    <el-col></el-col>
+  </el-row>
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue';
-  let activeName = ref('first');
-  const handleClick = () => {
-    console.log('handleClick', activeName.value);
+  import { computed, PropType, ref, watchEffect, nextTick } from 'vue';
+  import { GetTodoListModel } from '/@/api/sys/model/todoListModel';
+  import { Delete, Check } from '@element-plus/icons-vue';
+  import { ElMessageBox } from 'element-plus';
+  const emit = defineEmits(['deleteClick', 'checkClick', 'editTitle']);
+  const props = defineProps({
+    todoList: {
+      type: Array as PropType<GetTodoListModel[]>,
+    },
+  });
+
+  let activeName = ref('all');
+  let newTitleInput = ref('');
+  let selectEditIndex = ref(-1);
+  let todoList = ref<(GetTodoListModel & { bindData: false })[] | undefined>([]);
+
+  watchEffect(() => {
+    todoList.value = props.todoList?.map((it) => {
+      return { ...it, bindData: false };
+    });
+  });
+
+  const selectIds = computed(() => todoList.value?.filter((it) => it.bindData).map((it) => it.id));
+  const filterTodoList = computed(() => {
+    return todoList.value?.filter((it) => {
+      if (activeName.value === 'all') return true;
+      else if (activeName.value === 'process') {
+        return it.status === 0;
+      } else if (activeName.value === 'done') {
+        return it.status === 1;
+      } else {
+        console.error('filterTodoList fail', it);
+        return false;
+      }
+    });
+  });
+  const editTodoData = computed((): GetTodoListModel => {
+    return todoList.value?.find(
+      (_it, index) => index === selectEditIndex.value
+    ) as GetTodoListModel;
+  });
+
+  const handleDeleteClick = () => {
+    showDeleteTip(selectIds.value?.length);
+  };
+
+  const handleCheckClick = () => {
+    emit('checkClick', selectIds.value);
+  };
+
+  const handleEditInputBlur = () => {
+    console.log('emit:', { id: editTodoData.value.id, editTitle: newTitleInput.value });
+    emit('editTitle', { id: editTodoData.value.id, editTitle: newTitleInput.value });
+    selectEditIndex.value = -1;
+  };
+
+  const showDeleteTip = (chooseLength) => {
+    ElMessageBox.confirm(`您已選則了 ${chooseLength} 個選項,是否確認刪除?`, 'Warning', {
+      confirmButtonText: '確定',
+      cancelButtonText: '返回',
+      type: 'warning',
+    }).then(() => {
+      emit('deleteClick', selectIds.value);
+    });
+  };
+
+  const handleEditClick = async (editIndex: number) => {
+    selectEditIndex.value = editIndex;
+    const title = editTodoData.value?.title;
+    newTitleInput.value = title as string;
+
+    await nextTick();
+    let button = document.getElementById('test');
+    button?.focus();
   };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .title {
+    overflow: auto;
+    cursor: pointer;
+  }
+</style>
