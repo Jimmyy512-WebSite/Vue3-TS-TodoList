@@ -1,8 +1,9 @@
 import axios from 'axios';
 
+console.log('axios:', import.meta.env.MODE);
 const instance = axios.create({
   // Api base url
-  baseURL: process.env.NODE_ENV === 'development' ? '/data' : process.env.VUE_APP_DEMO_API_ROOT,
+  baseURL: import.meta.env.MODE === 'development' ? '/api' : import.meta.env.VITE_API_DOMAIN,
   timeout: 15000,
   withCredentials: true,
 });
