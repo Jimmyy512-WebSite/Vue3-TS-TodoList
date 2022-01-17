@@ -9,6 +9,7 @@ import { getTodoList, addTodo, deleteTodo, patchTodo } from '/@/api/sys/todoList
 interface baseState {
   token: undefined;
   name: String;
+  loading: Boolean;
 }
 
 export const useBaseStore = defineStore({
@@ -17,9 +18,13 @@ export const useBaseStore = defineStore({
     return {
       token: undefined,
       name: 'jim',
+      loading: false,
     };
   },
   actions: {
+    setLoading(isLoading: Boolean) {
+      this.loading = isLoading;
+    },
     async getTodoList() {
       return await getTodoList();
     },

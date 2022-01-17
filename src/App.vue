@@ -1,16 +1,16 @@
 <script setup lang="ts">
-  // import { ref } from 'vue';
-  // let port = ref(import.meta.env.VITE_PORT);
-  // import.meta.env.VITE_PORT;
-  // setInterval(() => {
-  //   port.value++;
-  // }, 1000);
+  import { ref, watchEffect } from 'vue';
+  import { useBaseStore } from './store/modules/base';
+  const fullscreenLoading = ref(false);
+  const baseStore = useBaseStore();
+  //全局loading監聽
+  watchEffect(() => {
+    fullscreenLoading.value = baseStore.loading.valueOf();
+  });
 </script>
 
 <template>
-  <!-- <div class="title">vite por222t:</div>
-  <div class="content">{{ port }}</div> -->
-  <router-view></router-view>
+  <router-view v-loading.fullscreen.lock="fullscreenLoading"> </router-view>
 </template>
 
 <style></style>

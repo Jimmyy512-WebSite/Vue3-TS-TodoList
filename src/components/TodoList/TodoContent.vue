@@ -97,7 +97,6 @@
   };
 
   const handleEditInputBlur = () => {
-    console.log('emit:', { id: editTodoData.value.id, editTitle: newTitleInput.value });
     emit('editTitle', { id: editTodoData.value.id, editTitle: newTitleInput.value });
     selectEditIndex.value = -1;
   };

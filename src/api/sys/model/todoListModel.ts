@@ -27,4 +27,8 @@ export interface PatchTodoParamModel {
   status?: number;
 }
 
-export interface PatchTodoResultModel {}
+export interface PatchTodoResultModel {
+  id: number;
+  title: string;
+  status: number;
+}
