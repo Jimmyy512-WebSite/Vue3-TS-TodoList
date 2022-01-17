@@ -9,13 +9,15 @@
       @editTitle="handleEditTitle"
     ></TodoContent>
     <div class="line"></div>
+    <TodoFooterVue :listNum="unFinishNum"></TodoFooterVue>
   </div>
 </template>
 
 <script setup lang="ts">
   import TodoHeader from '../components/TodoList/TodoHeader.vue';
   import TodoContent from '../components/TodoList/TodoContent.vue';
-  import { ref } from 'vue';
+  import TodoFooterVue from '../components/TodoList/TodoFooter.vue';
+  import { computed, ref } from 'vue';
   import { useBaseStore } from '../store/modules/base';
   import { GetTodoListModel } from '../api/sys/model/todoListModel';
   import { ElMessage } from 'element-plus';
@@ -23,6 +25,8 @@
   const baseStore = useBaseStore();
   let newTodoInput = ref('');
   let todoListData = ref<GetTodoListModel[]>([]);
+  // 計算進行中任務的數量
+  let unFinishNum = computed(() => todoListData.value.filter((it) => it.status === 0).length);
 
   //* 獲取Todo列表
   const getTodoListAPI = async () => {

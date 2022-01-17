@@ -5,40 +5,48 @@
     <el-tab-pane label="已完成" name="done"></el-tab-pane>
   </el-tabs>
 
-  <el-row :gutter="10" align="middle" v-for="(it, index) in filterTodoList" :key="index">
-    <el-col :span="1">
-      <el-checkbox v-model="it.bindData" label="" size="large"></el-checkbox>
-    </el-col>
-    <el-col :span="18" class="title" @click="handleEditClick(index)">
-      <template v-if="selectEditIndex === index">
-        <el-input
-          id="test"
-          v-model="newTitleInput"
-          placeholder="請輸入修改值"
-          @blur="handleEditInputBlur"
-        />
-      </template>
+  <div class="todoListContent">
+    <el-row :gutter="10" align="middle" v-for="(it, index) in filterTodoList" :key="index">
+      <el-col :span="1">
+        <el-checkbox v-model="it.bindData" label="" size="large"></el-checkbox>
+      </el-col>
+      <el-col :span="18" class="title" @click="handleEditClick(index)">
+        <template v-if="selectEditIndex === index">
+          <el-input
+            id="test"
+            v-model="newTitleInput"
+            placeholder="請輸入修改值"
+            @blur="handleEditInputBlur"
+          />
+        </template>
 
-      <template v-else>
-        {{ it.title }}
-      </template>
-    </el-col>
-    <el-col :span="2"> {{ it.status === 0 ? '進行中' : '已完成' }}</el-col>
-    <el-col :span="1.5">
-      <el-button v-if="it.bindData" type="danger" :icon="Delete" circle @click="handleDeleteClick">
-      </el-button
-    ></el-col>
-    <el-col :span="1.5">
-      <el-button
-        v-if="it.bindData && it.status !== 1"
-        type="success"
-        :icon="Check"
-        circle
-        @click="handleCheckClick"
-      >
-      </el-button
-    ></el-col>
-  </el-row>
+        <template v-else>
+          {{ it.title }}
+        </template>
+      </el-col>
+      <el-col :span="2"> {{ it.status === 0 ? '進行中' : '已完成' }}</el-col>
+      <el-col :span="1.5">
+        <el-button
+          v-if="it.bindData"
+          type="danger"
+          :icon="Delete"
+          circle
+          @click="handleDeleteClick"
+        >
+        </el-button
+      ></el-col>
+      <el-col :span="1.5">
+        <el-button
+          v-if="it.bindData && it.status !== 1"
+          type="success"
+          :icon="Check"
+          circle
+          @click="handleCheckClick"
+        >
+        </el-button
+      ></el-col>
+    </el-row>
+  </div>
 
   <el-row align="middle">
     <el-col></el-col>
@@ -126,5 +134,10 @@
   .title {
     overflow: auto;
     cursor: pointer;
+  }
+  .todoListContent {
+    max-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 </style>
