@@ -10,7 +10,20 @@
 </script>
 
 <template>
+  <div class="routeBlock">
+    <router-link class="routeLink" to="/todolist">代辦清單範例</router-link>
+    <router-link class="routeLink" to="/pinia_test">Pinia範例</router-link>
+  </div>
   <router-view v-loading.fullscreen.lock="fullscreenLoading"> </router-view>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+  .routeBlock {
+    display: flex;
+    justify-content: center;
+    .routeLink {
+      display: block;
+      margin: 20px 10px 0px 10px;
+    }
+  }
+</style>

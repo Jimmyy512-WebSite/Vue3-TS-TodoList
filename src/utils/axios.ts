@@ -34,7 +34,7 @@ instance.interceptors.response.use(
     if (err.code === 'ECONNABORTED') {
       ElMessage({
         type: 'error',
-        message: 'API請求超時,請確認是否有"npm run json-server"啟動服務。',
+        message: 'API請求超時,請確認是否有"npm run json-server"啟動API服務。',
       });
     }
     return Promise.reject(err);
