@@ -4,6 +4,7 @@
     <TodoHeader v-model="newTodoInput" @addTodo="addTodoAPI"></TodoHeader>
     <TodoContent
       :todoList="todoListData"
+      ref="REF_TodoContent"
       @deleteClick="handleDeleteClick"
       @checkClick="handleCheckClick"
       @editTitle="handleEditTitle"
@@ -17,14 +18,64 @@
   import TodoHeader from '../components/TodoList/TodoHeader.vue';
   import TodoContent from '../components/TodoList/TodoContent.vue';
   import TodoFooterVue from '../components/TodoList/TodoFooter.vue';
-  import { computed, ref } from 'vue';
+  import { computed, nextTick, ref } from 'vue';
   import { useBaseStore } from '../store/modules/base';
   import { GetTodoListModel } from '../api/sys/model/todoListModel';
   import { ElMessage } from 'element-plus';
+  import intro from 'intro.js';
+  import 'intro.js/minified/introjs.min.css';
+  let introInstance: any = null;
+  const doIntro = () => {
+    introInstance = intro()
+      .setOptions({
+        // 擋遮罩退出
+        exitOnOverlayClick: false,
+        steps: [
+          {
+            title: 'Welcome',
+            intro: '這是vue3 todoList的Demo👋',
+          },
+          {
+            element: document.querySelector('#addTodoInput'),
+            intro: '輸入想要添加的內容',
+          },
+          {
+            element: document.querySelector('#addTodoInputBtn'),
+            intro: '新增數據',
+          },
+          {
+            element: document.querySelector('.titleInput'),
+            intro: '點擊編輯數據',
+          },
+          {
+            element: document.querySelector('.titleCheckBox'),
+            intro: '選取資料',
+          },
+          {
+            element: document.querySelector('.deleteIcon'),
+            intro: '刪除資料',
+          },
+          {
+            element: document.querySelector('.checkIcon'),
+            intro: '將資料改成完成狀態',
+          },
+        ],
+      })
+      .onbeforeexit(function () {
+        return;
+      })
+      .start()
+      .onbeforechange(() => {
+        if (introInstance._currentStep == '4') {
+          REF_TodoContent.value?.forceEnableFirstSelect();
+        }
+      });
+  };
 
   const baseStore = useBaseStore();
   let newTodoInput = ref('');
   let todoListData = ref<GetTodoListModel[]>([]);
+  let REF_TodoContent = ref<InstanceType<typeof TodoContent>>();
   // 計算進行中任務的數量
   let unFinishNum = computed(() => todoListData.value.filter((it) => it.status === 0).length);
 
@@ -34,6 +85,8 @@
     let res = await baseStore.getTodoList();
     console.log('getTodoListAPI res:', res);
     todoListData.value = res.data;
+    await nextTick();
+    doIntro();
     baseStore.setLoading(false);
   };
 

@@ -7,13 +7,12 @@
 
   <div class="todoListContent">
     <el-row :gutter="10" align="middle" v-for="(it, index) in filterTodoList" :key="index">
-      <el-col :span="1">
+      <el-col :span="1" class="titleCheckBox">
         <el-checkbox v-model="it.bindData" label="" size="large"></el-checkbox>
       </el-col>
-      <el-col :span="18" class="title" @click="handleEditClick(index)">
+      <el-col :span="18" class="title titleInput" @click="handleEditClick(index)">
         <template v-if="selectEditIndex === index">
           <el-input
-            id="test"
             v-model="newTitleInput"
             placeholder="請輸入修改值"
             @blur="handleEditInputBlur"
@@ -25,7 +24,7 @@
         </template>
       </el-col>
       <el-col :span="2"> {{ it.status === 0 ? '進行中' : '已完成' }}</el-col>
-      <el-col :span="1.5">
+      <el-col :span="1.5" class="deleteIcon">
         <el-button
           v-if="it.bindData"
           type="danger"
@@ -35,7 +34,7 @@
         >
         </el-button
       ></el-col>
-      <el-col :span="1.5">
+      <el-col :span="1.5" class="checkIcon">
         <el-button
           v-if="it.bindData && it.status !== 1"
           type="success"
@@ -62,16 +61,17 @@
   const props = defineProps({
     todoList: {
       type: Array as PropType<GetTodoListModel[]>,
+      required: true, //如果不加required props.todoList型別有可能會是undefined
     },
   });
 
   let activeName = ref('all');
   let newTitleInput = ref('');
   let selectEditIndex = ref(-1);
-  let todoList = ref<(GetTodoListModel & { bindData: false })[] | undefined>([]);
+  let todoList = ref<(GetTodoListModel & { bindData: boolean })[]>([]);
 
   watchEffect(() => {
-    todoList.value = props.todoList?.map((it) => {
+    todoList.value = props.todoList.map((it) => {
       return { ...it, bindData: false };
     });
   });
@@ -128,6 +128,11 @@
     let button = document.getElementById('test');
     button?.focus();
   };
+
+  const forceEnableFirstSelect = () => {
+    todoList.value[0].bindData = true;
+  };
+  defineExpose({ forceEnableFirstSelect });
 </script>
 
 <style lang="scss" scoped>
