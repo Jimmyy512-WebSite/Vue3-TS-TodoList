@@ -11,6 +11,11 @@
     ></TodoContent>
     <div class="line"></div>
     <TodoFooterVue :listNum="unFinishNum"></TodoFooterVue>
+    <el-row justify="center">
+      <el-col :span="3">
+        <el-button type="primary" @click="doIntro">點擊教學</el-button>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -86,7 +91,10 @@
     console.log('getTodoListAPI res:', res);
     todoListData.value = res.data;
     await nextTick();
-    doIntro();
+    sessionStorage.getItem('isFirstVisit') === '1'
+      ? ''
+      : (sessionStorage.setItem('isFirstVisit', '1'), doIntro());
+
     baseStore.setLoading(false);
   };
 
