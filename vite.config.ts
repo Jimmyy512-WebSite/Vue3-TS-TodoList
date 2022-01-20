@@ -80,6 +80,21 @@ export default ({ mode }): UserConfig => {
           javascriptEnabled: true,
         },
       },
+      postcss: {
+        plugins: [
+          // 去除打包警告，"@charset" must be the first
+          {
+            postcssPlugin: 'internal:charset-removal',
+            AtRule: {
+              charset: (atRule) => {
+                if (atRule.name === 'charset') {
+                  atRule.remove();
+                }
+              },
+            },
+          },
+        ],
+      },
     },
     plugins: [vue()],
   };

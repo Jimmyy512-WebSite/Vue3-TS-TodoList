@@ -80,7 +80,7 @@
   const baseStore = useBaseStore();
   let newTodoInput = ref('');
   let todoListData = ref<GetTodoListModel[]>([]);
-  let REF_TodoContent = ref<InstanceType<typeof TodoContent>>();
+  let REF_TodoContent = ref<typeof TodoContent>();
   // 計算進行中任務的數量
   let unFinishNum = computed(() => todoListData.value.filter((it) => it.status === 0).length);
 

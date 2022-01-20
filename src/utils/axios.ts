@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ElMessage } from 'element-plus';
 
-console.log('axios import.meta.env.MODE:', import.meta.env.MODE);
+// console.log('axios import.meta.env.MODE:', import.meta.env.MODE);
 const instance = axios.create({
   baseURL: import.meta.env.MODE === 'development' ? '/api' : import.meta.env.VITE_API_DOMAIN,
   timeout: 5000,
