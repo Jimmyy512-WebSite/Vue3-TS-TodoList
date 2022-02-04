@@ -15,6 +15,9 @@
       <el-col :span="3">
         <el-button type="primary" @click="doIntro">點擊教學</el-button>
       </el-col>
+      <el-col :span="3">
+        <el-button type="success" @click="goGithub">原始碼下載</el-button>
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -167,6 +170,10 @@
     const indexPos = todoListData.value.map((it) => it.id).indexOf(id);
     todoListData.value[indexPos] = res.data;
     baseStore.setLoading(false);
+  };
+
+  const goGithub = () => {
+    window.open('https://github.com/jimmyy512/Vue3-TS-TodoList');
   };
 
   getTodoListAPI();
