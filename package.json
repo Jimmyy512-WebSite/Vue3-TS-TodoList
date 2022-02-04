@@ -8,7 +8,7 @@
     "lint:eslint": "eslint \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
     "lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
     "json-server": "json-server db.json --port 3087",
-    "linux-server": "pm2 start /root/Vue3-TS-TodoList/node_modules/.bin/json-server -- /root/Vue3-TS-TodoList/db.json"
+    "linux-server": "pm2 start /root/Vue3-TS-TodoList/node_modules/.bin/json-server -- /root/Vue3-TS-TodoList/db.json --port 3087"
   },
   "dependencies": {
     "@types/node": "^17.0.8",
