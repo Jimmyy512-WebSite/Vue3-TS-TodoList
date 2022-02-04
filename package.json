@@ -2,12 +2,12 @@
   "name": "my-vue-app",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"npm run json-server\" \"vite\"",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint:eslint": "eslint \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
     "lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
-    "json-server": "json-server db.json --port 3087",
+    "json-server": "./node_modules/.bin/json-server  db.json --port 3087",
     "linux-server": "pm2 start /root/Vue3-TS-TodoList/node_modules/.bin/json-server -- /root/Vue3-TS-TodoList/db.json --port 3087"
   },
   "dependencies": {
@@ -27,6 +27,7 @@
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
     "@vitejs/plugin-vue": "^2.0.0",
+    "concurrently": "^7.0.0",
     "dotenv": "^10.0.0",
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",

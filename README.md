@@ -1,6 +1,9 @@
-# Todo List with Vue 3 + Typescript + Vite
-## 線上Demo
+# Todo List(代辦清單) with Vue 3 + Typescript + Vite
+
+## 線上 Demo
+
 [https://vue3-todolist.jimmyy512.com/#/todolist](https://vue3-todolist.jimmyy512.com/#/todolist)
+
 ## Recommended IDE Setup
 
 - [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
@@ -21,6 +24,7 @@
 - pinia
 - element-plus
 - axios
+- json-server
 
 ## 已實作功能
 
@@ -37,7 +41,6 @@
 
 ```sh=
 npm i
-npm install -g json-server #安裝json-server,啟動假API資料
 ```
 
 ## 運行開發
@@ -50,10 +53,4 @@ npm run dev
 
 ```sh=
 npm run build
-```
-
-## 運行 Json-Server
-
-```sh=
-npm run json-server
 ```
