@@ -14,7 +14,7 @@
     <router-link class="routeLink" to="/todolist">代辦清單範例</router-link>
     <router-link class="routeLink" to="/pinia_test">Pinia範例</router-link>
   </div>
-  <router-view v-loading.fullscreen.lock="fullscreenLoading"> </router-view>
+  <router-view v-loading.fullscreen.lock="fullscreenLoading" />
 </template>
 
 <style lang="scss" scoped>

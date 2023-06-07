@@ -10,7 +10,7 @@
         <div>{{ demoStore.formatTestNum }}</div>
       </el-col>
     </el-row>
-    <OptionControlVue></OptionControlVue>
+    <OptionControlVue />
   </div>
 </template>
 

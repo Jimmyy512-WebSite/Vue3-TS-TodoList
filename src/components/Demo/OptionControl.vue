@@ -15,7 +15,7 @@
     <el-col :span="6">
       <el-input v-model="numberInput" placeholder="Please input" />
     </el-col>
-    <el-col :span="2"></el-col>
+    <el-col :span="2" />
     <el-col :span="1">
       <el-button type="success" @click="handleSetClick"> 點擊設置</el-button>
     </el-col>

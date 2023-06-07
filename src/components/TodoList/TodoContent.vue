@@ -1,14 +1,14 @@
 <template>
   <el-tabs v-model="activeName">
-    <el-tab-pane label="全部" name="all"></el-tab-pane>
-    <el-tab-pane label="進行中" name="process"></el-tab-pane>
-    <el-tab-pane label="已完成" name="done"></el-tab-pane>
+    <el-tab-pane label="全部" name="all" />
+    <el-tab-pane label="進行中" name="process" />
+    <el-tab-pane label="已完成" name="done" />
   </el-tabs>
 
   <div class="todoListContent">
     <el-row :gutter="10" align="middle" v-for="(it, index) in filterTodoList" :key="index">
       <el-col :span="1" class="titleCheckBox">
-        <el-checkbox v-model="it.bindData" label="" size="large"></el-checkbox>
+        <el-checkbox v-model="it.bindData" label="" size="large" />
       </el-col>
       <el-col :span="18" class="title titleInput" @click="handleEditClick(index)">
         <template v-if="selectEditIndex === index">
@@ -31,9 +31,7 @@
           :icon="Delete"
           circle
           @click="handleDeleteClick"
-        >
-        </el-button
-      ></el-col>
+      /></el-col>
       <el-col :span="1.5" class="checkIcon">
         <el-button
           v-if="it.bindData && it.status !== 1"
@@ -41,14 +39,12 @@
           :icon="Check"
           circle
           @click="handleCheckClick"
-        >
-        </el-button
-      ></el-col>
+      /></el-col>
     </el-row>
   </div>
 
   <el-row align="middle">
-    <el-col></el-col>
+    <el-col />
   </el-row>
 </template>
 

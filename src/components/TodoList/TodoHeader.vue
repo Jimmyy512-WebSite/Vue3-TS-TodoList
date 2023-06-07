@@ -10,8 +10,7 @@
           class="elInput"
           v-model="addInput"
           placeholder="請輸入要新建的內容"
-        >
-        </el-input>
+        />
       </el-col>
       <el-col :span="2">
         <el-button id="addTodoInputBtn" type="primary" @click="emit('addTodo')">新增</el-button>

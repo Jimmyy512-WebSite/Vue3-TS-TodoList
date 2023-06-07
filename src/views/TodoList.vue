@@ -1,16 +1,16 @@
 <template>
   <div id="TodoList">
     <h1>代辦清單</h1>
-    <TodoHeader v-model="newTodoInput" @addTodo="addTodoAPI"></TodoHeader>
+    <TodoHeader v-model="newTodoInput" @addTodo="addTodoAPI" />
     <TodoContent
       :todoList="todoListData"
       ref="REF_TodoContent"
       @deleteClick="handleDeleteClick"
       @checkClick="handleCheckClick"
       @editTitle="handleEditTitle"
-    ></TodoContent>
+    />
     <div class="line"></div>
-    <TodoFooterVue :listNum="unFinishNum"></TodoFooterVue>
+    <TodoFooterVue :listNum="unFinishNum" />
     <el-row justify="center">
       <el-col :span="3">
         <el-button type="primary" @click="doIntro">點擊教學</el-button>
