@@ -10,6 +10,7 @@
 </script>
 
 <template>
+  <h1 align="center">早上好芒果!</h1>
   <div class="routeBlock">
     <router-link class="routeLink" to="/todolist">代辦清單範例</router-link>
     <router-link class="routeLink" to="/pinia_test">Pinia範例</router-link>
