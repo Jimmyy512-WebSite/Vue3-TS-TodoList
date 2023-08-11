@@ -1,8 +1,7 @@
 # Todo List(代辦清單) with Vue 3 + Typescript + Vite
 
 ## 線上 Demo
-
-[https://vue3-todolist.jimmyy512.com/#/todolist](https://vue3-todolist.jimmyy512.com/#/todolist)
+[http://vue3-todolist.jimmy512.com/#/todolist](http://vue3-todolist.jimmy512.com/#/todolist)
 
 ## Recommended IDE Setup
 
