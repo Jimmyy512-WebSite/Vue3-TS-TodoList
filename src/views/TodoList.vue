@@ -1,5 +1,6 @@
 <template>
   <div id="TodoList">
+    <img class="logo" src="@/assets/logo.png" alt="" />
     <h1>代辦清單</h1>
     <TodoHeader v-model="newTodoInput" @addTodo="addTodoAPI" />
     <TodoContent
@@ -181,6 +182,13 @@
 
 <style lang="scss" scoped>
   #TodoList {
+    .logo {
+      display: block;
+      margin: 0 auto;
+      width: 20px;
+      height: auto;
+      margin-top: 20px;
+    }
     h1 {
       text-align: center;
     }

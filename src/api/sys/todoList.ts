@@ -2,12 +2,11 @@ import {
   AddTodoParamModel,
   AddTodoResultModel,
   DeleteTodoParamModel,
-  DeleteTodoResultModel,
   GetTodoListModel,
   PatchTodoParamModel,
   PatchTodoResultModel,
 } from './model/todoListModel';
-import axios from '/@/utils/axios';
+import axios from '@/utils/axios';
 enum API {
   TodoList = '/todolist',
 }
@@ -27,7 +26,7 @@ export function addTodo(param: AddTodoParamModel) {
 }
 
 export function deleteTodo(param: DeleteTodoParamModel) {
-  return axios.request<DeleteTodoResultModel>({
+  return axios.request<any>({
     method: 'DELETE',
     url: `${API.TodoList}/${param.id}`,
   });

@@ -3,8 +3,8 @@ import {
   AddTodoParamModel,
   DeleteTodoParamModel,
   PatchTodoParamModel,
-} from '/@/api/sys/model/todoListModel';
-import { getTodoList, addTodo, deleteTodo, patchTodo } from '/@/api/sys/todoList';
+} from '@/api/sys/model/todoListModel';
+import { getTodoList, addTodo, deleteTodo, patchTodo } from '@/api/sys/todoList';
 
 interface baseState {
   token: undefined;

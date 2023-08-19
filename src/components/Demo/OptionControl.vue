@@ -25,7 +25,7 @@
 <script setup lang="ts">
   import { ElMessage } from 'element-plus';
   import { ref } from 'vue';
-  import { useDemoStore } from '/@/store/modules/demo';
+  import { useDemoStore } from '@/store/modules/demo';
   const titleSpan = 4;
   const demoStore = useDemoStore();
   const numberInput = ref();
@@ -42,7 +42,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '/@/components/Demo/index.scss';
+  @import '@/components/Demo/index.scss';
   .el-row {
     margin-bottom: $rowMarginBottom;
     &:last-child {

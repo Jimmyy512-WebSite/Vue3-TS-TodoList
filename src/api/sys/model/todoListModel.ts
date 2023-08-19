@@ -19,7 +19,7 @@ export interface DeleteTodoParamModel {
   id: number;
 }
 
-export interface DeleteTodoResultModel {}
+// export interface DeleteTodoResultModel {}
 
 export interface PatchTodoParamModel {
   id: number;

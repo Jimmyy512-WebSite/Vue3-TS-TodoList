@@ -28,7 +28,7 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "vetur.validation.script": false,
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 0,
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },

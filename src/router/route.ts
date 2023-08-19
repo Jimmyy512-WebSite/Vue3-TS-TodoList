@@ -7,10 +7,10 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: '/todolist',
-    component: () => import('/@/views/TodoList.vue'),
+    component: () => import('@/views/TodoList.vue'),
   },
   {
     path: '/pinia_test',
-    component: () => import('/@/views/PiniaTest.vue'),
+    component: () => import('@/views/PiniaTest.vue'),
   },
 ];

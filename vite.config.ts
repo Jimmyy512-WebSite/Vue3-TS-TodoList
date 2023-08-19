@@ -5,17 +5,13 @@ import { loadEnv } from 'vite';
 import type { UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 // import { loadEnv } from 'vite';
-import { resolve } from 'path';
+import path, { resolve } from 'path';
 
 // import { generateModifyVars } from './build/config/themeConfig';
 // import { createProxy } from './build/vite/proxy';
 import { wrapperEnv } from './build/utils';
 // import { createVitePlugins } from './build/vite/plugin';
 // import { OUTPUT_DIR } from './build/constant';
-
-function pathResolve(dir: string) {
-  return resolve(__dirname, '.', dir);
-}
 
 //* 開發模式時: mode = "development"
 //* 打包模式時: mode = "production"
@@ -38,19 +34,8 @@ export default ({ mode }): UserConfig => {
   return {
     // base: VITE_PUBLIC_PATH,
     root,
-    resolve: {
-      alias: [
-        {
-          // /@/xxxx  =>  src/xxx
-          find: /^\/@\//,
-          replacement: pathResolve('src') + '/',
-        },
-        {
-          // /#/xxxx  =>  types/xxx
-          find: /^\/#\//,
-          replacement: pathResolve('types') + '/',
-        },
-      ],
+    alias: {
+      '@': path.resolve(__dirname, './src'),
     },
     server: {
       //* 指定开发服务器端口。注意：如果端口已经被使用，Vite 会自动尝试下一个可用的端口，所以这可能不是开发服务器最终监听的实际端口。

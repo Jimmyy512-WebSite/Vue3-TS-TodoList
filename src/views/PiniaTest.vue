@@ -15,13 +15,13 @@
 </template>
 
 <script setup lang="ts">
-  import { useDemoStore } from '/@/store/modules/demo';
+  import { useDemoStore } from '@/store/modules/demo';
   import OptionControlVue from '../components/Demo/OptionControl.vue';
   const demoStore = useDemoStore();
 </script>
 
 <style lang="scss" scoped>
-  @import '/@/components/Demo/index.scss';
+  @import '@/components/Demo/index.scss';
   .PiniaTest {
     width: 600px;
     margin: 50px auto;
