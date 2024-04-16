@@ -37,8 +37,25 @@
 - 打 API 能正確吃到 TS 型別
 - 全局 loading 效果(透過 pinia 控制)
 
-# 本機開發
+# Docker 開發 (推薦)
+## 運行開發環境
+```sh=
+docker-compose up --build
+```
+### 開發利用 VsCode 打開 docker 容器
+```
+使用 Visual Studio Code 的 Remote - Containers 擴充
+這個擴充功能允許 VS Code 直接在 Docker 容器內運行，
+並存取容器內的檔案系統，包括 node_modules。
+所有的開發工具和外掛程式都將在容器環境中執行，可以避免因環境不同而導致的問題。
+```
 
+## 運行生產環境
+``` sh=
+docker-compose -f docker-compose.prod.yml up -d --build
+```
+
+# 本機開發
 ## 第一次安裝
 
 ```sh=
@@ -57,19 +74,3 @@ npm run dev
 npm run build
 ```
 
-# Docker 開發
-
-## 運行服務
-
-```sh=
-docker-compose up --build
-```
-
-## VsCode 打開容器
-
-```
-使用 Visual Studio Code 的 Remote - Containers 擴充
-這個擴充功能允許 VS Code 直接在 Docker 容器內運行，
-並存取容器內的檔案系統，包括 node_modules。
-所有的開發工具和外掛程式都將在容器環境中執行，可以避免因環境不同而導致的問題。
-```
