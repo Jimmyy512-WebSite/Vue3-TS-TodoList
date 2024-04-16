@@ -34,12 +34,18 @@ export default ({ mode }): UserConfig => {
   return {
     // base: VITE_PUBLIC_PATH,
     root,
-    alias: {
-      '@': path.resolve(__dirname, './src'),
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+      },
     },
     server: {
-      //* 指定开发服务器端口。注意：如果端口已经被使用，Vite 会自动尝试下一个可用的端口，所以这可能不是开发服务器最终监听的实际端口。
-      port: viteEnv.VITE_PORT,
+      port: 3102, // 确保端口与 Dockerfile 中 EXPOSE 的端口相匹配
+      host: true,
+      strictPort: true, // 确保如果端口已被占用，Vite 不会尝试另一个端口
+      watch: {
+        usePolling: true, // 通过启用轮询，Vite 不再依赖文件系统事件，而是定期检查文件是否发生了变化。
+      },
       proxy: {
         '/api': {
           target: viteEnv.VITE_API_DOMAIN,

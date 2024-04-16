@@ -1,6 +1,7 @@
 # Todo List(代辦清單) with Vue 3 + Typescript + Vite
 
 ## 線上 Demo
+
 [http://vue3-todolist.jimmy512.com/#/todolist](http://vue3-todolist.jimmy512.com/#/todolist)
 
 ## Recommended IDE Setup
@@ -17,7 +18,7 @@
 
 ## 主要套件
 
-- NodeJS 16.13.1
+- NodeJS 18.20.2
 - TypeScript
 - vite
 - pinia
@@ -36,6 +37,8 @@
 - 打 API 能正確吃到 TS 型別
 - 全局 loading 效果(透過 pinia 控制)
 
+# 本機開發
+
 ## 第一次安裝
 
 ```sh=
@@ -52,4 +55,10 @@ npm run dev
 
 ```sh=
 npm run build
+```
+
+# Docker 開發
+
+```sh=
+docker-compose up --build
 ```
