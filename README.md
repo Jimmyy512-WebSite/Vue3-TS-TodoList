@@ -59,6 +59,17 @@ npm run build
 
 # Docker 開發
 
+## 運行服務
+
 ```sh=
 docker-compose up --build
+```
+
+## VsCode 打開容器
+
+```
+使用 Visual Studio Code 的 Remote - Containers 擴充
+這個擴充功能允許 VS Code 直接在 Docker 容器內運行，
+並存取容器內的檔案系統，包括 node_modules。
+所有的開發工具和外掛程式都將在容器環境中執行，可以避免因環境不同而導致的問題。
 ```
