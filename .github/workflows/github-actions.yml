@@ -1,0 +1,33 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - master # 或是你用於部署的分支
+
+env:
+  VPS_SSH: ${{ secrets.VPS_SSH }}
+  VPS_IP: ${{ secrets.VPS_IP }}
+  REPO_DIR_PATH: ${{ secrets.REPO_DIR_PATH }}
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ env.VPS_SSH }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "${{ env.VPS_IP }}" >> ~/.ssh/known_hosts
+
+      - name: Deploy to VPS
+        run: |
+          ssh -i ~/.ssh/id_rsa root@"${{ env.VPS_IP }}" "
+            cd '${{ env.REPO_DIR_PATH }}' &&
+            git pull --rebase --autostash &&
+            git checkout -- . &&
+            docker-compose -f docker-compose.prod.yml up -d --build
+          "

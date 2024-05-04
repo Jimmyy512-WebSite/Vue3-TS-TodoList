@@ -12,7 +12,7 @@
 <template>
   <div class="routeBlock">
     <router-link class="routeLink" to="/todolist">代辦清單範例</router-link>
-    <router-link class="routeLink" to="/pinia_test">Pinia範例</router-link>
+    <router-link class="routeLink" to="/pinia_test">Pinia3範例</router-link>
   </div>
   <router-view v-loading.fullscreen.lock="fullscreenLoading" />
 </template>
