@@ -9,6 +9,8 @@ env:
   VPS_SSH: ${{ secrets.VPS_SSH }}
   VPS_IP: ${{ secrets.VPS_IP }}
   REPO_DIR_PATH: ${{ secrets.REPO_DIR_PATH }}
+  TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+  TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -31,3 +33,10 @@ jobs:
             git checkout -- . &&
             docker-compose -f docker-compose.prod.yml up -d --build
           "
+
+      - name: Call TG Bot
+        run: |
+          curl -X POST \
+          -H 'Content-Type: application/json' \
+          -d '{"chat_id": "${{ env.TG_CHAT_ID }}", "text": "Deployment to \nhttp://todolist.jimmy512.com \nhas completed!", "disable_notification": false}' \
+          https://api.telegram.org/bot${{ env.TG_BOT_TOKEN }}/sendMessage
