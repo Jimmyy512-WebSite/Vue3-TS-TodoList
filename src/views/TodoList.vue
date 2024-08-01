@@ -35,9 +35,9 @@
   import 'intro.js/minified/introjs.min.css';
   let introInstance: any = null;
   const doIntro = () => {
-    introInstance = intro()
+    introInstance = intro();
+    introInstance
       .setOptions({
-        // 擋遮罩退出
         exitOnOverlayClick: false,
         steps: [
           {
@@ -70,15 +70,13 @@
           },
         ],
       })
-      .onbeforeexit(function () {
-        return;
-      })
-      .start()
-      .onbeforechange(() => {
-        if (introInstance._currentStep == '4') {
+      .onchange(() => {
+        const currentStep = introInstance.currentStep();
+        if (currentStep === 4) {
           REF_TodoContent.value?.forceEnableFirstSelect();
         }
-      });
+      })
+      .start();
   };
 
   const baseStore = useBaseStore();
@@ -182,6 +180,9 @@
 
 <style lang="scss" scoped>
   #TodoList {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
     .logo {
       display: block;
       margin: 0 auto;
@@ -192,9 +193,6 @@
     h1 {
       text-align: center;
     }
-    width: 100%;
-    max-width: 760px;
-    margin: 0 auto;
     .line {
       background-color: rgb(202, 199, 199);
       width: 100%;
