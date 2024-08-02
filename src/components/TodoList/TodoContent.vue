@@ -49,96 +49,98 @@
 </template>
 
 <script setup lang="ts">
-  import { computed, PropType, ref, watchEffect, nextTick } from 'vue';
-  import { GetTodoListModel } from '@/api/sys/model/todoListModel';
-  import { Delete, Check } from '@element-plus/icons-vue';
-  import { ElMessageBox } from 'element-plus';
-  const emit = defineEmits(['deleteClick', 'checkClick', 'editTitle']);
-  const props = defineProps({
-    todoList: {
-      type: Array as PropType<GetTodoListModel[]>,
-      required: true, //如果不加required props.todoList型別有可能會是undefined
-    },
+import { computed, PropType, ref, watchEffect, nextTick } from 'vue';
+import { GetTodoListModel } from '@/api/sys/model/todoListModel';
+import { Delete, Check } from '@element-plus/icons-vue';
+import { ElMessageBox } from 'element-plus';
+type EnhancedTodoListModel = GetTodoListModel & { bindData: boolean };
+const emit = defineEmits(['deleteClick', 'checkClick', 'editTitle']);
+const props = defineProps({
+  todoList: {
+    type: Array as PropType<GetTodoListModel[]>,
+    required: true, //如果不加required props.todoList型別有可能會是undefined
+  },
+});
+
+let activeName = ref('all');
+let newTitleInput = ref('');
+let selectEditIndex = ref(-1);
+let myTodoList = ref<EnhancedTodoListModel[]>([]);
+
+watchEffect(() => {
+  myTodoList.value = props.todoList.map((it) => {
+    return { ...it, bindData: false };
   });
+});
 
-  let activeName = ref('all');
-  let newTitleInput = ref('');
-  let selectEditIndex = ref(-1);
-  let todoList = ref<(GetTodoListModel & { bindData: boolean })[]>([]);
-
-  watchEffect(() => {
-    todoList.value = props.todoList.map((it) => {
-      return { ...it, bindData: false };
-    });
+const selectIds = computed(() => myTodoList.value?.filter((it) => it.bindData).map((it) => it.id));
+const filterTodoList = computed(() => {
+  return myTodoList.value?.filter((it) => {
+    if (activeName.value === 'all') return true;
+    else if (activeName.value === 'process') {
+      return it.status === 0;
+    } else if (activeName.value === 'done') {
+      return it.status === 1;
+    } else {
+      console.error('filterTodoList fail', it);
+      return false;
+    }
   });
+});
 
-  const selectIds = computed(() => todoList.value?.filter((it) => it.bindData).map((it) => it.id));
-  const filterTodoList = computed(() => {
-    return todoList.value?.filter((it) => {
-      if (activeName.value === 'all') return true;
-      else if (activeName.value === 'process') {
-        return it.status === 0;
-      } else if (activeName.value === 'done') {
-        return it.status === 1;
-      } else {
-        console.error('filterTodoList fail', it);
-        return false;
-      }
-    });
+const editTodoData = computed((): GetTodoListModel => {
+  return myTodoList.value?.find(
+    (_it, index) => index === selectEditIndex.value,
+  ) as GetTodoListModel;
+});
+
+const handleDeleteClick = () => {
+  showDeleteTip(selectIds.value?.length);
+};
+
+const handleCheckClick = () => {
+  emit('checkClick', selectIds.value);
+};
+
+const handleEditInputBlur = () => {
+  emit('editTitle', { id: editTodoData.value.id, editTitle: newTitleInput.value });
+  selectEditIndex.value = -1;
+};
+
+const showDeleteTip = (chooseLength) => {
+  ElMessageBox.confirm(`您已選則了 ${chooseLength} 個選項,是否確認刪除?`, 'Warning', {
+    confirmButtonText: '確定',
+    cancelButtonText: '返回',
+    type: 'warning',
+  }).then(() => {
+    emit('deleteClick', selectIds.value);
   });
-  const editTodoData = computed((): GetTodoListModel => {
-    return todoList.value?.find(
-      (_it, index) => index === selectEditIndex.value
-    ) as GetTodoListModel;
-  });
+};
 
-  const handleDeleteClick = () => {
-    showDeleteTip(selectIds.value?.length);
-  };
+const handleEditClick = async (editIndex: number) => {
+  selectEditIndex.value = editIndex;
+  const title = editTodoData.value?.title;
+  newTitleInput.value = title as string;
 
-  const handleCheckClick = () => {
-    emit('checkClick', selectIds.value);
-  };
+  await nextTick();
+  let button = document.getElementById('test');
+  button?.focus();
+};
 
-  const handleEditInputBlur = () => {
-    emit('editTitle', { id: editTodoData.value.id, editTitle: newTitleInput.value });
-    selectEditIndex.value = -1;
-  };
-
-  const showDeleteTip = (chooseLength) => {
-    ElMessageBox.confirm(`您已選則了 ${chooseLength} 個選項,是否確認刪除?`, 'Warning', {
-      confirmButtonText: '確定',
-      cancelButtonText: '返回',
-      type: 'warning',
-    }).then(() => {
-      emit('deleteClick', selectIds.value);
-    });
-  };
-
-  const handleEditClick = async (editIndex: number) => {
-    selectEditIndex.value = editIndex;
-    const title = editTodoData.value?.title;
-    newTitleInput.value = title as string;
-
-    await nextTick();
-    let button = document.getElementById('test');
-    button?.focus();
-  };
-
-  const forceEnableFirstSelect = () => {
-    todoList.value[0].bindData = true;
-  };
-  defineExpose({ forceEnableFirstSelect });
+const forceEnableFirstSelect = () => {
+  myTodoList.value[0].bindData = true;
+};
+defineExpose({ forceEnableFirstSelect });
 </script>
 
 <style lang="scss" scoped>
-  .title {
-    overflow: auto;
-    cursor: pointer;
-  }
-  .todoListContent {
-    max-height: 320px;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
+.title {
+  overflow: auto;
+  cursor: pointer;
+}
+.todoListContent {
+  max-height: 320px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 </style>

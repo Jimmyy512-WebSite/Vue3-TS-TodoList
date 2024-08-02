@@ -23,30 +23,30 @@
 </template>
 
 <script setup lang="ts">
-  import { ElMessage } from 'element-plus';
-  import { ref } from 'vue';
-  import { useDemoStore } from '@/store/modules/demo';
-  const titleSpan = 4;
-  const demoStore = useDemoStore();
-  const numberInput = ref();
-  const handleSetClick = () => {
-    if (numberInput.value === undefined) {
-      ElMessage({
-        message: '設置失敗 輸入值為空,請再次確認。',
-        type: 'error',
-      });
-      return;
-    }
-    demoStore.setNum(numberInput.value);
-  };
+import { ElMessage } from 'element-plus';
+import { ref } from 'vue';
+import { useDemoStore } from '@/store/modules/demo';
+const titleSpan = 4;
+const demoStore = useDemoStore();
+const numberInput = ref();
+const handleSetClick = () => {
+  if (numberInput.value === undefined) {
+    ElMessage({
+      message: '設置失敗 輸入值為空,請再次確認。',
+      type: 'error',
+    });
+    return;
+  }
+  demoStore.setNum(numberInput.value);
+};
 </script>
 
 <style lang="scss" scoped>
-  @import '@/components/Demo/index.scss';
-  .el-row {
-    margin-bottom: $rowMarginBottom;
-    &:last-child {
-      margin-bottom: 0px;
-    }
+@import '@/components/Demo/index.scss';
+.el-row {
+  margin-bottom: $rowMarginBottom;
+  &:last-child {
+    margin-bottom: 0px;
   }
+}
 </style>
