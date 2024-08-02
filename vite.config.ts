@@ -1,17 +1,7 @@
-// import type { UserConfig, ConfigEnv } from 'vite';
 import { loadEnv, defineConfig } from 'vite';
-// import vue from '@vitejs/plugin-vue'
-
-import type { UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-// import { loadEnv } from 'vite';
-import path, { resolve } from 'path';
-
-// import { generateModifyVars } from './build/config/themeConfig';
-// import { createProxy } from './build/vite/proxy';
-import { wrapperEnv } from './build/utils';
-// import { createVitePlugins } from './build/vite/plugin';
-// import { OUTPUT_DIR } from './build/constant';
+import path from 'path';
+import vueDevTools from 'vite-plugin-vue-devtools';
 
 //* 開發模式時: mode = "development"
 //* 打包模式時: mode = "production"
@@ -19,8 +9,6 @@ import { wrapperEnv } from './build/utils';
 export default defineConfig(({ mode }) => {
   // 加载环境变量
   const env = loadEnv(mode, process.cwd());
-
-  console.warn('vite.config.ts process.env.VITE_API_DOMAIN:', env.VITE_API_DOMAIN);
   return {
     resolve: {
       alias: {
@@ -38,15 +26,15 @@ export default defineConfig(({ mode }) => {
         '/api': {
           target: env.VITE_API_DOMAIN,
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ''),
+          rewrite: path => path.replace(/^\/api/, ''),
         },
         '/test': {
           target: 'https://api.publicapis.org',
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/test/, ''),
+          rewrite: path => path.replace(/^\/test/, ''),
         },
       },
     },
-    plugins: [vue()],
+    plugins: [vue(), vueDevTools()],
   };
 });

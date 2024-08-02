@@ -5,7 +5,7 @@
     "dev": "concurrently \"npm run json-server\" \"vite\"",
     "build": "vite build",
     "preview": "vite preview",
-    "lint:eslint": "eslint \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
     "json-server": "npx json-server --watch db.json --port 3087",
     "linux-server": "pm2 start /root/Vue3-TS-TodoList/node_modules/.bin/json-server --watch /root/Vue3-TS-TodoList/db.json --port 3087"
@@ -25,22 +25,21 @@
     "vue-router": "^4.4.2"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^8.0.0",
-    "@typescript-eslint/parser": "^8.0.0",
+    "@rushstack/eslint-patch": "^1.8.0",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "@vue/eslint-config-typescript": "^13.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.23.0",
+    "vite-plugin-vue-devtools": "^7.3.1",
     "@vitejs/plugin-vue": "^5.1.1",
     "concurrently": "^8.2.2",
     "dotenv": "^16.4.5",
-    "eslint": "^9.8.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-define-config": "^2.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-vue": "^9.27.0",
+    "globals": "^15.9.0",
     "less": "^4.2.0",
     "postcss-less": "^6.0.0",
     "sass": "^1.77.8",
     "typescript": "^5.5.4",
     "vite": "^5.3.5",
-    "vue-eslint-parser": "^9.4.3",
     "vue-tsc": "^2.0.29"
   }
 }
