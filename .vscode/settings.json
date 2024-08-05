@@ -40,4 +40,5 @@
   "cSpell.words": [
     "VITE"
   ],
+  "scss.lint.unknownAtRules": "ignore"
 }

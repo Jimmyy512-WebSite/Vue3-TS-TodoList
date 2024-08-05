@@ -5,12 +5,6 @@ on:
     branches:
       - master # 或是你用於部署的分支
 
-env:
-  VPS_SSH: ${{ secrets.VPS_SSH }}
-  VPS_IP: ${{ secrets.VPS_IP }}
-  REPO_DIR_PATH: ${{ secrets.REPO_DIR_PATH }}
-  TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-  TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -21,22 +15,30 @@ jobs:
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ env.VPS_SSH }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.VPS_SSH }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H "${{ env.VPS_IP }}" >> ~/.ssh/known_hosts
+          ssh-keyscan -H "${{ secrets.VPS_IP }}" >> ~/.ssh/known_hosts
+
+      - name: Get latest commit message
+        id: get_commit
+        run: echo "COMMIT_MSG=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
+        shell: bash
+        continue-on-error: false
 
       - name: Deploy to VPS
         run: |
-          ssh -i ~/.ssh/id_rsa root@"${{ env.VPS_IP }}" "
-            cd '${{ env.REPO_DIR_PATH }}' &&
+          ssh -i ~/.ssh/id_rsa root@"${{ secrets.VPS_IP }}" "
+            cd '${{ secrets.REPO_DIR_PATH }}' &&
             git pull --rebase --autostash &&
             git checkout -- . &&
             docker-compose -f docker-compose.prod.yml up -d --build
           "
 
       - name: Call TG Bot
+        env:
+          COMMIT_MSG: ${{ env.COMMIT_MSG }}
         run: |
           curl -X POST \
           -H 'Content-Type: application/json' \
-          -d '{"chat_id": "${{ env.TG_CHAT_ID }}", "text": "Deployment to \nhttp://todolist.jimmy512.com \nhas completed!", "disable_notification": false}' \
-          https://api.telegram.org/bot${{ env.TG_BOT_TOKEN }}/sendMessage
+          -d "{\"chat_id\": \"${{ secrets.TG_CHAT_ID }}\", \"text\": \"Deployment to \\nhttp://todolist.jimmy512.com \\nhas completed!\\nCommit Message: ${COMMIT_MSG}\", \"disable_notification\": false}" \
+          https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage

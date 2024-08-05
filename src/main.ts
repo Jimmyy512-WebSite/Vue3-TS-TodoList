@@ -6,6 +6,8 @@ import store from '@/store';
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import 'normalize.css';
+import 'virtual:uno.css';
+import '@/styles/main.scss';
 
 const app = createApp(App);
 app.provide('$axios', axios);

@@ -1,5 +1,5 @@
 <template>
-  <div id="TodoList">
+  <div id="TodoList" class="mx-auto max-sm:mx-10px">
     <img class="logo" src="@/assets/logo.png" alt="" />
     <h1>代辦清單</h1>
     <TodoHeader v-model="newTodoInput" @addTodo="addTodoAPI" />
@@ -10,16 +10,14 @@
       @checkClick="handleCheckClick"
       @editTitle="handleEditTitle"
     />
+
     <div class="line"></div>
     <TodoFooterVue :listNum="unFinishNum" />
-    <el-row justify="center">
-      <el-col :span="3">
-        <el-button type="primary" @click="doIntro">點擊教學</el-button>
-      </el-col>
-      <el-col :span="3">
-        <el-button type="success" @click="goGithub"> 原始碼下載 </el-button>
-      </el-col>
-    </el-row>
+
+    <div class="flex w-full justify-center">
+      <el-button type="primary" @click="doIntro">點擊教學</el-button>
+      <el-button type="success" @click="goGithub"> 原始碼下載 </el-button>
+    </div>
   </div>
 </template>
 
@@ -180,9 +178,7 @@ getTodoListAPI();
 
 <style lang="scss" scoped>
 #TodoList {
-  width: 100%;
   max-width: 760px;
-  margin: 0 auto;
 
   .logo {
     display: block;

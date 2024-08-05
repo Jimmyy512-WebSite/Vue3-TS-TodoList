@@ -1,4 +1,5 @@
 import { loadEnv, defineConfig } from 'vite';
+
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import vueDevTools from 'vite-plugin-vue-devtools';
@@ -6,9 +7,10 @@ import vueDevTools from 'vite-plugin-vue-devtools';
 //* 開發模式時: mode = "development"
 //* 打包模式時: mode = "production"
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(async ({ mode }) => {
   // 加载环境变量
   const env = loadEnv(mode, process.cwd());
+  const UnoCss = await import('unocss/vite').then((mod) => mod.default);
   return {
     resolve: {
       alias: {
@@ -26,15 +28,15 @@ export default defineConfig(({ mode }) => {
         '/api': {
           target: env.VITE_API_DOMAIN,
           changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, ''),
+          rewrite: (path) => path.replace(/^\/api/, ''),
         },
         '/test': {
           target: 'https://api.publicapis.org',
           changeOrigin: true,
-          rewrite: path => path.replace(/^\/test/, ''),
+          rewrite: (path) => path.replace(/^\/test/, ''),
         },
       },
     },
-    plugins: [vue(), vueDevTools()],
+    plugins: [vue(), vueDevTools(), UnoCss()],
   };
 });

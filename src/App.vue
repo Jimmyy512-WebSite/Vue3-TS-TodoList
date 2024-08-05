@@ -12,7 +12,8 @@ watchEffect(() => {
 <template>
   <div class="routeBlock">
     <router-link class="routeLink" to="/todolist">代辦清單範例</router-link>
-    <router-link class="routeLink" to="/pinia_test">Pinia範例</router-link>
+    <router-link class="routeLink" to="/pinia_test">Pinia 範例</router-link>
+    <router-link class="routeLink" to="/VueUse">VueUse 範例</router-link>
   </div>
   <router-view v-loading.fullscreen.lock="fullscreenLoading" />
 </template>
@@ -21,9 +22,11 @@ watchEffect(() => {
 .routeBlock {
   display: flex;
   justify-content: center;
+  width: 100%;
   .routeLink {
     display: block;
     margin: 20px 10px 0px 10px;
+    font-weight: bold;
   }
 }
 </style>

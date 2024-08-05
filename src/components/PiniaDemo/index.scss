@@ -1,0 +1,9 @@
+.rowContainer {
+  @apply w-full flex mb-20px max-sm:(flex-wrap mb-10px);
+  .rowTitle {
+    @apply w-30% font-bold flex items-center max-sm:(w-100% mb-5px);
+  }
+  .rowContent {
+    @apply w-80% max-sm:w-100%;
+  }
+}

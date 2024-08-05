@@ -13,4 +13,8 @@ export const routes: RouteRecordRaw[] = [
     path: '/pinia_test',
     component: () => import('@/views/PiniaTest.vue'),
   },
+  {
+    path: '/VueUse',
+    component: () => import('@/views/VueUse.vue'),
+  },
 ];

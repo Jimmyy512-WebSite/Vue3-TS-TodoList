@@ -1,0 +1,39 @@
+* {
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    sans-serif,
+    Apple Color Emoji,
+    Segoe UI Emoji,
+    Segoe UI Symbol,
+    Noto Color Emoji;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+*,
+:after,
+:before {
+  // border: 0 solid #e5e7eb;
+  box-sizing: border-box;
+}
