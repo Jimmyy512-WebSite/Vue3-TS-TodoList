@@ -7,6 +7,3 @@ services:
     image: vue3-todo-list:latest # 为镜像指定一个名称
     ports:
       - "3102:3102"
-    volumes:
-      - .:/app # 此行在生产中通常不需要，特别是当所有资源都已内置到镜像中时
-      - /app/node_modules # 这将忽略宿主机的 node_modules 目录，使用容器内的 node_modules

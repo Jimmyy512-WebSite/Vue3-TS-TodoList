@@ -7,9 +7,6 @@ import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import 'normalize.css';
 
-const test = 'asd';
-console.warn('test:', test);
-
 const app = createApp(App);
 app.provide('$axios', axios);
 
