@@ -40,5 +40,5 @@ jobs:
         run: |
           curl -X POST \
           -H 'Content-Type: application/json' \
-          -d "{\"chat_id\": \"${{ secrets.TG_CHAT_ID }}\", \"text\": \"Deployment to \\nhttp://todolist.jimmy512.com \\nhas completed!\\nCommit Message: ${COMMIT_MSG}\", \"disable_notification\": false}" \
+          -d "{\"chat_id\": \"${{ secrets.TG_CHAT_ID }}\", \"text\": \"部屬 \\nhttp://todolist.jimmy512.com \\n已經成功\\nCommit Message: \\n${COMMIT_MSG}\", \"disable_notification\": false}" \
           https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage

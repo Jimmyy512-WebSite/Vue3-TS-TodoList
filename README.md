@@ -18,6 +18,8 @@
 ## 主要套件
 
 - NodeJS 18.20.2
+- SCSS
+- UnoCSS
 - TypeScript
 - Vite
 - Pinia
