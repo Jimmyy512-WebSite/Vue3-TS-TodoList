@@ -1,0 +1,38 @@
+{
+  "Common": {
+    "TodoListExample": "할 일 목록 예시",
+    "PiniaExample": "피니아 사례",
+    "VueUseExample": "Vue사용 예",
+    "SwitchLanguage": "언어 전환:"
+  },
+  "LanguageName": "한국인",
+  "TodoList": {
+    "Title": "할 일 목록",
+    "Teaching": "가르치려면 클릭하세요",
+    "DownloadCode": "소스코드 다운로드",
+    "Intro": {
+      "Welcome": "이것은 vue3 todoList의 데모입니다👋",
+      "WelcomeTitle": "환영",
+      "InputWhatUWant": "추가하고 싶은 내용을 입력하세요.",
+      "AddData": "새 데이터 추가",
+      "ChangeDataToComplete": "데이터를 완료 상태로 변경",
+      "ClickEditData": "데이터를 편집하려면 클릭하세요.",
+      "DeleteData": "데이터 삭제",
+      "SelectData": "데이터 선택"
+    }
+  },
+  "TodoContent": {
+    "ALL": "모두",
+    "Complete": "완전한",
+    "PLZInput": "수정된 값을 입력하세요.",
+    "Processing": "진행 중"
+  },
+  "TodoFooter": {
+    "ShowInfo": "{count}개의 작업이 완료되지 않은 상태로 남아 있습니다."
+  },
+  "TodoHeader": {
+    "Add": "새로운",
+    "InputPlaceHolder": "만들고 싶은 콘텐츠를 입력해주세요",
+    "Title": "할 일 항목"
+  }
+}

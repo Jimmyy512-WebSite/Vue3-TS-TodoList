@@ -1,0 +1,38 @@
+{
+  "Common": {
+    "TodoListExample": "To-do list example",
+    "PiniaExample": "Pinia Example",
+    "VueUseExample": "VueUse example",
+    "SwitchLanguage": "Language switching:"
+  },
+  "LanguageName": "English",
+  "TodoList": {
+    "Title": "To-do list",
+    "Teaching": "Click to teach",
+    "DownloadCode": "Source code download",
+    "Intro": {
+      "Welcome": "This is the Demo of vue3 todoList👋",
+      "WelcomeTitle": "Welcome",
+      "InputWhatUWant": "Enter what you want to add",
+      "AddData": "Add new data",
+      "ChangeDataToComplete": "Change data to complete status",
+      "ClickEditData": "Click to edit data",
+      "DeleteData": "Delete data",
+      "SelectData": "Select data"
+    }
+  },
+  "TodoContent": {
+    "ALL": "all",
+    "Complete": "Completed",
+    "PLZInput": "Please enter modified value",
+    "Processing": "in progress"
+  },
+  "TodoFooter": {
+    "ShowInfo": "{count} tasks remain unfinished"
+  },
+  "TodoHeader": {
+    "Add": "New",
+    "InputPlaceHolder": "Please enter the content you want to create",
+    "Title": "To-do items"
+  }
+}

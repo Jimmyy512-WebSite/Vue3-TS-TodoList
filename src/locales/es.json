@@ -1,0 +1,38 @@
+{
+  "Common": {
+    "TodoListExample": "Ejemplo de lista de tareas pendientes",
+    "PiniaExample": "Ejemplo de Pinia",
+    "VueUseExample": "Ejemplo de uso de Vue",
+    "SwitchLanguage": "Cambio de idioma:"
+  },
+  "LanguageName": "Español",
+  "TodoList": {
+    "Title": "Lista de tareas pendientes",
+    "Teaching": "Haga clic para enseñar",
+    "DownloadCode": "Descarga del código fuente",
+    "Intro": {
+      "Welcome": "Esta es la Demo de vue3 todoList👋",
+      "WelcomeTitle": "Bienvenido",
+      "InputWhatUWant": "Ingresa lo que deseas agregar",
+      "AddData": "Agregar nuevos datos",
+      "ChangeDataToComplete": "Cambiar datos para completar el estado",
+      "ClickEditData": "Haga clic para editar datos",
+      "DeleteData": "Eliminar datos",
+      "SelectData": "Seleccionar datos"
+    }
+  },
+  "TodoContent": {
+    "ALL": "todo",
+    "Complete": "Terminado",
+    "PLZInput": "Por favor ingrese el valor modificado",
+    "Processing": "en curso"
+  },
+  "TodoFooter": {
+    "ShowInfo": "{count} tareas permanecen sin terminar"
+  },
+  "TodoHeader": {
+    "Add": "Nuevo",
+    "InputPlaceHolder": "Por favor ingresa el contenido que deseas crear",
+    "Title": "Artículos pendientes"
+  }
+}

@@ -6,12 +6,14 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 const props = defineProps({
   listNum: Number,
 });
+
 const showInfo = computed(() => {
-  return `還有 ${props.listNum}個任務未完成`;
+  return t('TodoFooter.ShowInfo', { count: props.listNum });
 });
 </script>
 

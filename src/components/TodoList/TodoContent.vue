@@ -1,8 +1,8 @@
 <template>
   <el-tabs v-model="activeName">
-    <el-tab-pane label="全部" name="all" />
-    <el-tab-pane label="進行中" name="process" />
-    <el-tab-pane label="已完成" name="done" />
+    <el-tab-pane :label="t('TodoContent.ALL')" name="all" />
+    <el-tab-pane :label="t('TodoContent.Processing')" name="process" />
+    <el-tab-pane :label="t('TodoContent.Complete')" name="done" />
   </el-tabs>
 
   <div class="todoListContent">
@@ -14,7 +14,7 @@
         <template v-if="selectEditIndex === index">
           <el-input
             v-model="newTitleInput"
-            placeholder="請輸入修改值"
+            :placeholder="t('TodoContent.PLZInput')"
             @blur="handleEditInputBlur"
           />
         </template>
@@ -23,7 +23,9 @@
           {{ it.title }}
         </template>
       </el-col>
-      <el-col :span="2"> {{ it.status === 0 ? '進行中' : '已完成' }}</el-col>
+      <el-col :span="2">
+        {{ it.status === 0 ? t('TodoContent.Processing') : t('TodoContent.Complete') }}</el-col
+      >
       <el-col :span="1.5" class="deleteIcon">
         <el-button
           v-if="it.bindData"
@@ -53,6 +55,8 @@ import { computed, PropType, ref, watchEffect, nextTick } from 'vue';
 import { GetTodoListModel } from '@/api/sys/model/todoListModel';
 import { Delete, Check } from '@element-plus/icons-vue';
 import { ElMessageBox } from 'element-plus';
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 type EnhancedTodoListModel = GetTodoListModel & { bindData: boolean };
 const emit = defineEmits(['deleteClick', 'checkClick', 'editTitle']);
 const props = defineProps({

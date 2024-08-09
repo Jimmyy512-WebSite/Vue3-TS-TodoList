@@ -2,18 +2,20 @@
   <div id="TodoHeader">
     <el-row :gutter="0" class="elRow">
       <el-col :span="4">
-        <div class="grid-content titleBlock">代辦事項</div>
+        <div class="grid-content titleBlock">{{ $t('TodoHeader.Title') }}</div>
       </el-col>
       <el-col :span="18">
         <el-input
           id="addTodoInput"
           class="elInput"
           v-model="addInput"
-          placeholder="請輸入要新建的內容"
+          :placeholder="t('TodoHeader.InputPlaceHolder')"
         />
       </el-col>
       <el-col :span="2">
-        <el-button id="addTodoInputBtn" type="primary" @click="emit('addTodo')">新增</el-button>
+        <el-button id="addTodoInputBtn" type="primary" @click="emit('addTodo')">{{
+          t('TodoHeader.Add')
+        }}</el-button>
       </el-col>
     </el-row>
   </div>
@@ -21,6 +23,8 @@
 
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue';
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 const props = defineProps({
   modelValue: String,
 });

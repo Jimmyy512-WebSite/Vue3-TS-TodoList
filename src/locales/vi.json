@@ -1,0 +1,38 @@
+{
+  "Common": {
+    "TodoListExample": "Ví dụ về danh sách việc cần làm",
+    "PiniaExample": "Ví dụ Pinia",
+    "VueUseExample": "Ví dụ về VueUse",
+    "SwitchLanguage": "Chuyển đổi ngôn ngữ:"
+  },
+  "LanguageName": "Tiếng Việt",
+  "TodoList": {
+    "Title": "Danh sách việc cần làm",
+    "Teaching": "Bấm để dạy",
+    "DownloadCode": "Tải xuống mã nguồn",
+    "Intro": {
+      "Welcome": "Đây là bản Demo của vue3 todoList👋",
+      "WelcomeTitle": "Chào mừng",
+      "InputWhatUWant": "Nhập nội dung bạn muốn thêm",
+      "AddData": "Thêm dữ liệu mới",
+      "ChangeDataToComplete": "Thay đổi dữ liệu sang trạng thái hoàn thành",
+      "ClickEditData": "Bấm để chỉnh sửa dữ liệu",
+      "DeleteData": "Xóa dữ liệu",
+      "SelectData": "Chọn dữ liệu"
+    }
+  },
+  "TodoContent": {
+    "ALL": "tất cả",
+    "Complete": "Hoàn thành",
+    "PLZInput": "Vui lòng nhập giá trị đã sửa đổi",
+    "Processing": "đang tiến hành"
+  },
+  "TodoFooter": {
+    "ShowInfo": "{count} nhiệm vụ vẫn chưa hoàn thành"
+  },
+  "TodoHeader": {
+    "Add": "Mới",
+    "InputPlaceHolder": "Vui lòng nhập nội dung bạn muốn tạo",
+    "Title": "Những việc cần làm"
+  }
+}

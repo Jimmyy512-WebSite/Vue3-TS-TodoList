@@ -1,0 +1,38 @@
+{
+  "Common": {
+    "TodoListExample": "代办清单范例",
+    "PiniaExample": "Pinia 范例",
+    "VueUseExample": "VueUse 范例",
+    "SwitchLanguage": "语言切换："
+  },
+  "LanguageName": "简体中文",
+  "TodoList": {
+    "Title": "代办清单",
+    "Teaching": "点击教学",
+    "DownloadCode": "原始码下载",
+    "Intro": {
+      "Welcome": "这是vue3 todoList的Demo👋",
+      "WelcomeTitle": "Welcome",
+      "InputWhatUWant": "输入想要添加的内容",
+      "AddData": "新增数据",
+      "ChangeDataToComplete": "将资料改成完成状态",
+      "ClickEditData": "点击编辑数据",
+      "DeleteData": "删除资料",
+      "SelectData": "选取资料"
+    }
+  },
+  "TodoContent": {
+    "ALL": "全部",
+    "Complete": "已完成",
+    "PLZInput": "请输入修改值",
+    "Processing": "进行中"
+  },
+  "TodoFooter": {
+    "ShowInfo": "还有 {count} 个任务未完成"
+  },
+  "TodoHeader": {
+    "Add": "新增",
+    "InputPlaceHolder": "请输入要新建的内容",
+    "Title": "代办事项"
+  }
+}

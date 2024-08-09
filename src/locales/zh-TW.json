@@ -1,0 +1,38 @@
+{
+  "Common": {
+    "TodoListExample": "代辦清單範例",
+    "PiniaExample": "Pinia 範例",
+    "VueUseExample": "VueUse 範例",
+    "SwitchLanguage": "語言切換："
+  },
+  "LanguageName": "繁體中文",
+  "TodoList": {
+    "Title": "代辦清單",
+    "Teaching": "點擊教學",
+    "DownloadCode": "原始碼下載",
+    "Intro": {
+      "Welcome": "這是vue3 todoList的Demo👋",
+      "WelcomeTitle": "Welcome",
+      "InputWhatUWant": "輸入想要添加的內容",
+      "AddData": "新增數據",
+      "ClickEditData": "點擊編輯數據",
+      "SelectData": "選取資料",
+      "DeleteData": "刪除資料",
+      "ChangeDataToComplete": "將資料改成完成狀態"
+    }
+  },
+  "TodoHeader": {
+    "Title": "代辦事項",
+    "InputPlaceHolder": "請輸入要新建的內容",
+    "Add": "新增"
+  },
+  "TodoContent": {
+    "ALL": "全部",
+    "Processing": "進行中",
+    "Complete": "已完成",
+    "PLZInput": "請輸入修改值"
+  },
+  "TodoFooter": {
+    "ShowInfo": "還有 {count} 個任務未完成"
+  }
+}

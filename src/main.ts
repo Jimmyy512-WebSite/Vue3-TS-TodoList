@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import i18n from '@/locales'; // 引入 i18n 配置
 import router from '@/router';
 import App from './App.vue';
 import axios from '@/utils/axios';
@@ -15,5 +16,6 @@ app.provide('$axios', axios);
 app.use(router);
 app.use(ElementPlus);
 app.use(store);
+app.use(i18n);
 
 app.mount('#app');

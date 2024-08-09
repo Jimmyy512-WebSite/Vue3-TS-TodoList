@@ -1,0 +1,38 @@
+{
+  "Common": {
+    "TodoListExample": "ToDoリストの例",
+    "PiniaExample": "ピニアの例",
+    "VueUseExample": "Vueの使用例",
+    "SwitchLanguage": "言語の切り替え:"
+  },
+  "LanguageName": "日本語",
+  "TodoList": {
+    "Title": "やることリスト",
+    "Teaching": "クリックして教える",
+    "DownloadCode": "ソースコードのダウンロード",
+    "Intro": {
+      "Welcome": "これはvue3 todoListのデモです👋",
+      "WelcomeTitle": "いらっしゃいませ",
+      "InputWhatUWant": "追加したい内容を入力してください",
+      "AddData": "新しいデータを追加する",
+      "ChangeDataToComplete": "データを完了ステータスに変更します",
+      "ClickEditData": "クリックしてデータを編集します",
+      "DeleteData": "データの削除",
+      "SelectData": "データの選択"
+    }
+  },
+  "TodoContent": {
+    "ALL": "全て",
+    "Complete": "完了",
+    "PLZInput": "変更した値を入力してください",
+    "Processing": "進行中"
+  },
+  "TodoFooter": {
+    "ShowInfo": "{count} 個のタスクが未完了のままです"
+  },
+  "TodoHeader": {
+    "Add": "新しい",
+    "InputPlaceHolder": "作成したい内容をご入力ください",
+    "Title": "To Do アイテム"
+  }
+}

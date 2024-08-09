@@ -1,7 +1,6 @@
 <template>
-  <div id="TodoList" class="mx-auto max-sm:mx-10px">
-    <img class="logo" src="@/assets/logo.png" alt="" />
-    <h1>代辦清單</h1>
+  <div id="TodoList" class="mx-auto max-w-760px max-sm:mx-10px">
+    <h1 class="text-center">{{ $t('TodoList.Title') }}</h1>
     <TodoHeader v-model="newTodoInput" @addTodo="addTodoAPI" />
     <TodoContent
       :todoList="todoListData"
@@ -11,12 +10,12 @@
       @editTitle="handleEditTitle"
     />
 
-    <div class="line"></div>
+    <div class="bg-[rgb(202,199,199)] w-full h-[1px]"></div>
     <TodoFooterVue :listNum="unFinishNum" />
 
     <div class="flex w-full justify-center">
-      <el-button type="primary" @click="doIntro">點擊教學</el-button>
-      <el-button type="success" @click="goGithub"> 原始碼下載 </el-button>
+      <el-button type="primary" @click="doIntro">{{ $t('TodoList.Teaching') }}</el-button>
+      <el-button type="success" @click="goGithub"> {{ $t('TodoList.DownloadCode') }} </el-button>
     </div>
   </div>
 </template>
@@ -31,6 +30,8 @@ import { GetTodoListModel } from '../api/sys/model/todoListModel';
 import { ElMessage } from 'element-plus';
 import intro from 'intro.js';
 import 'intro.js/minified/introjs.min.css';
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 let introInstance: any = null;
 const doIntro = () => {
   introInstance = intro();
@@ -39,32 +40,32 @@ const doIntro = () => {
       exitOnOverlayClick: false,
       steps: [
         {
-          title: 'Welcome',
-          intro: '這是vue3 todoList的Demo👋',
+          title: t('TodoList.Intro.WelcomeTitle'),
+          intro: t('TodoList.Intro.Welcome'),
         },
         {
           element: document.querySelector('#addTodoInput'),
-          intro: '輸入想要添加的內容',
+          intro: t('TodoList.Intro.InputWhatUWant'),
         },
         {
           element: document.querySelector('#addTodoInputBtn'),
-          intro: '新增數據',
+          intro: t('TodoList.Intro.AddData'),
         },
         {
           element: document.querySelector('.titleInput'),
-          intro: '點擊編輯數據',
+          intro: t('TodoList.Intro.ClickEditData'),
         },
         {
           element: document.querySelector('.titleCheckBox'),
-          intro: '選取資料',
+          intro: t('TodoList.Intro.SelectData'),
         },
         {
           element: document.querySelector('.deleteIcon'),
-          intro: '刪除資料',
+          intro: t('TodoList.Intro.DeleteData'),
         },
         {
           element: document.querySelector('.checkIcon'),
-          intro: '將資料改成完成狀態',
+          intro: t('TodoList.Intro.ChangeDataToComplete'),
         },
       ],
     })
@@ -90,6 +91,7 @@ const getTodoListAPI = async () => {
   let res = await baseStore.getTodoList();
   console.log('getTodoListAPI res:', res);
   todoListData.value = res.data;
+
   await nextTick();
   sessionStorage.getItem('isFirstVisit') === '1'
     ? ''
@@ -176,26 +178,4 @@ const goGithub = () => {
 getTodoListAPI();
 </script>
 
-<style lang="scss" scoped>
-#TodoList {
-  max-width: 760px;
-
-  .logo {
-    display: block;
-    margin: 0 auto;
-    width: 20px;
-    height: auto;
-    margin-top: 20px;
-  }
-
-  h1 {
-    text-align: center;
-  }
-
-  .line {
-    background-color: rgb(202, 199, 199);
-    width: 100%;
-    height: 1px;
-  }
-}
-</style>
+<style lang="scss" scoped></style>
