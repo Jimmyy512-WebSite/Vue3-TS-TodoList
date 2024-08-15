@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { useTimeoutFn } from '@vueuse/core';
 const countDownText = '定时器已執行,等待倒數結束';
