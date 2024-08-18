@@ -11,7 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import { useDemoStore } from '@/store/modules/demo';
 const demoStore = useDemoStore();
 </script>
 

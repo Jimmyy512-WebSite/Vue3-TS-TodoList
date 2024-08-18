@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
 import { useBaseStore } from './store/modules/base';
 import PickLang from '@/components/PickLang.vue';
 const fullscreenLoading = ref(false);

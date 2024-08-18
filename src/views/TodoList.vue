@@ -21,16 +21,14 @@
 </template>
 
 <script setup lang="ts">
-import TodoHeader from '../components/TodoList/TodoHeader.vue';
-import TodoContent from '../components/TodoList/TodoContent.vue';
-import TodoFooterVue from '../components/TodoList/TodoFooter.vue';
-import { computed, nextTick, ref } from 'vue';
-import { useBaseStore } from '../store/modules/base';
+import intro from 'intro.js';
+import TodoHeader from '@/components/TodoList/TodoHeader.vue';
+import TodoContent from '@/components/TodoList/TodoContent.vue';
+import TodoFooterVue from '@/components/TodoList/TodoFooter.vue';
 import { GetTodoListModel } from '../api/sys/model/todoListModel';
 import { ElMessage } from 'element-plus';
-import intro from 'intro.js';
 import 'intro.js/minified/introjs.min.css';
-import { useI18n } from 'vue-i18n';
+
 const { t } = useI18n();
 let introInstance: any = null;
 const doIntro = () => {

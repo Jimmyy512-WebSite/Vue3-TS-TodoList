@@ -12,11 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { useI18n } from 'vue-i18n';
-
 // 使用 vue-i18n composable 函數
-const { locale, t, messages } = useI18n();
+const { locale, messages } = useI18n();
 
 // 當前語言設定
 const currentLocale = ref(locale.value);

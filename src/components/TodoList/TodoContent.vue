@@ -51,7 +51,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType, ref, watchEffect, nextTick } from 'vue';
 import { GetTodoListModel } from '@/api/sys/model/todoListModel';
 import { Delete, Check } from '@element-plus/icons-vue';
 import { ElMessageBox } from 'element-plus';

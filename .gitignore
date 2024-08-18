@@ -4,6 +4,9 @@ var/log/nginx
 dist
 dist-ssr
 *.local
+.eslintrc-auto-import.json
+auto-imports.d.ts
+components.d.ts
 
 # other
 .npmrc
