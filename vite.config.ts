@@ -55,14 +55,14 @@ export default defineConfig(async ({ mode }) => {
       // }),
       AutoImport({
         imports: ['vue', 'vuex', 'vue-router', 'vue-i18n'],
-        dts: 'src/auto-imports.d.ts', // 確保文件被正確生成
+        dts: 'types/auto-imports.d.ts', // 指定 .d.ts 文件的路徑
         dirs: ['src/store/modules'], // 自動導入 store 模塊
         resolvers: [ElementPlusResolver({ importStyle: 'sass' })],
       }),
       Components({
         dirs: ['src/components'],
         extensions: ['vue'],
-        dts: true,
+        dts: 'types/components.d.ts', // 指定 .d.ts 文件的路徑
         directoryAsNamespace: true,
         deep: true,
         resolvers: [ElementPlusResolver({ importStyle: 'sass' })],
