@@ -3,12 +3,30 @@ import path from 'path';
 import vueDevTools from 'vite-plugin-vue-devtools';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
+import fs from 'fs';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import { loadEnv, defineConfig } from 'vite';
 
+// 定義 element-plus 的目錄路徑, 解決 vite optimizeDeps 導致自動重新整理問題
+const elementPlusDir = path.resolve(__dirname, 'node_modules', 'element-plus', 'es', 'components');
+function getElementPlusComponents(dir: string) {
+  const components: string[] = [];
+
+  fs.readdirSync(dir).forEach((file) => {
+    const filePath = path.join(dir, file);
+    if (fs.statSync(filePath).isDirectory()) {
+      const stylePath = path.join(filePath, 'style', 'index.d.ts');
+      if (fs.existsSync(stylePath)) {
+        components.push(`element-plus/es/components/${file}/style/index`);
+      }
+    }
+  });
+  return components;
+}
+const elementPlusComponents = getElementPlusComponents(elementPlusDir);
+
 //* 開發模式時: mode = "development"
 //* 打包模式時: mode = "production"
-
 export default defineConfig(async ({ mode }) => {
   // 加载环境变量
   const env = loadEnv(mode, process.cwd());
@@ -18,6 +36,9 @@ export default defineConfig(async ({ mode }) => {
       alias: {
         '@': path.resolve(__dirname, './src'),
       },
+    },
+    optimizeDeps: {
+      include: [...elementPlusComponents],
     },
     server: {
       port: 3102, // 确保端口与 Dockerfile 中 EXPOSE 的端口相匹配
