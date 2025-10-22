@@ -30,50 +30,51 @@ import { ElMessage } from 'element-plus';
 import 'intro.js/minified/introjs.min.css';
 
 const { t } = useI18n();
-let introInstance: any = null;
+let introInstance: ReturnType<typeof intro> | null = null;
 const doIntro = () => {
   introInstance = intro();
-  introInstance
-    .setOptions({
-      exitOnOverlayClick: false,
-      steps: [
-        {
-          title: t('TodoList.Intro.WelcomeTitle'),
-          intro: t('TodoList.Intro.Welcome'),
-        },
-        {
-          element: document.querySelector('#addTodoInput'),
-          intro: t('TodoList.Intro.InputWhatUWant'),
-        },
-        {
-          element: document.querySelector('#addTodoInputBtn'),
-          intro: t('TodoList.Intro.AddData'),
-        },
-        {
-          element: document.querySelector('.titleInput'),
-          intro: t('TodoList.Intro.ClickEditData'),
-        },
-        {
-          element: document.querySelector('.titleCheckBox'),
-          intro: t('TodoList.Intro.SelectData'),
-        },
-        {
-          element: document.querySelector('.deleteIcon'),
-          intro: t('TodoList.Intro.DeleteData'),
-        },
-        {
-          element: document.querySelector('.checkIcon'),
-          intro: t('TodoList.Intro.ChangeDataToComplete'),
-        },
-      ],
-    })
-    .onchange(() => {
-      const currentStep = introInstance.currentStep();
-      if (currentStep === 4) {
-        REF_TodoContent.value?.forceEnableFirstSelect();
-      }
-    })
-    .start();
+  introInstance.setOptions({
+    exitOnOverlayClick: false,
+    steps: [
+      {
+        title: t('TodoList.Intro.WelcomeTitle'),
+        intro: t('TodoList.Intro.Welcome'),
+      },
+      {
+        element: document.querySelector('#addTodoInput'),
+        intro: t('TodoList.Intro.InputWhatUWant'),
+      },
+      {
+        element: document.querySelector('#addTodoInputBtn'),
+        intro: t('TodoList.Intro.AddData'),
+      },
+      {
+        element: document.querySelector('.titleInput'),
+        intro: t('TodoList.Intro.ClickEditData'),
+      },
+      {
+        element: document.querySelector('.titleCheckBox'),
+        intro: t('TodoList.Intro.SelectData'),
+      },
+      {
+        element: document.querySelector('.deleteIcon'),
+        intro: t('TodoList.Intro.DeleteData'),
+      },
+      {
+        element: document.querySelector('.checkIcon'),
+        intro: t('TodoList.Intro.ChangeDataToComplete'),
+      },
+    ],
+  });
+
+  introInstance.onChange(() => {
+    const currentStep = introInstance?.getCurrentStep();
+    if (currentStep === 4) {
+      REF_TodoContent.value?.forceEnableFirstSelect();
+    }
+  });
+
+  introInstance.start();
 };
 
 const baseStore = useBaseStore();

@@ -31,6 +31,7 @@ jobs:
             cd '${{ secrets.REPO_DIR_PATH }}' &&
             git pull --rebase --autostash &&
             git checkout -- . &&
+            docker compose -f docker-compose.prod.yml down &&
             docker compose -f docker-compose.prod.yml up -d --build
           "
 

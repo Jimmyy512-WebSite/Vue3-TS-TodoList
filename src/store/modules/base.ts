@@ -12,14 +12,9 @@ interface baseState {
   loading: boolean;
 }
 
-export const useBaseStore = defineStore({
-  id: 'base',
+export const useBaseStore = defineStore('base', {
   state: (): baseState => {
-    return {
-      token: undefined,
-      name: 'jim',
-      loading: false,
-    };
+    return { token: undefined, name: 'jim', loading: false };
   },
   actions: {
     setLoading(isLoading: boolean) {

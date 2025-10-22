@@ -5,7 +5,7 @@
     // ↓指定生成哪个模块系统代码，esnext为最新版本
     "module": "esnext",
     // ↓决定如何处理模块。
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     // ↓启用所有严格类型检查选项。
     "strict": true,
     // ↓禁止对同一个文件的不一致的引用。

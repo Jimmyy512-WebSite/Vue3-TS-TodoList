@@ -18,7 +18,8 @@
 
 ## 主要套件
 
-- NodeJS 18.20.2
+- Vue 3.5.22
+- NodeJS 22.21.0
 - SCSS
 - UnoCSS
 - TypeScript
